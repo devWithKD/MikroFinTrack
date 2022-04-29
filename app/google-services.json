@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "359649844621",
+    "project_id": "mikrofintrack",
+    "storage_bucket": "mikrofintrack.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359649844621:android:07d35bd4a34a6d80b871c4",
+        "android_client_info": {
+          "package_name": "com.MikroFin.mikrofintrack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "359649844621-4pe8uqeps6k61b6kbkq9e6p8oknlhva3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMw42S9nS9x8KAE-Syc_is6aPUt7fqtVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "359649844621-4pe8uqeps6k61b6kbkq9e6p8oknlhva3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
