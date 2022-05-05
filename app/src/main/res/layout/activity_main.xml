@@ -17,8 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
-
+        app:srcCompat="@drawable/logo"
+        tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/conWdEmail"
@@ -27,7 +27,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/continue_with_email"
         android:fontFamily="@font/candara"
-        android:paddingLeft="50dp"
+        android:paddingStart="50dp"
         android:text="Continue with e-mail"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
@@ -35,7 +35,8 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
     <Button
         android:id="@+id/button3"
@@ -44,7 +45,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/continue_with_google"
         android:fontFamily="@font/candara"
-        android:paddingLeft="50dp"
+        android:paddingStart="50dp"
         android:text="Continue with Google"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
@@ -52,7 +53,8 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/conWdEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/conWdEmail"
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -62,7 +64,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/placeholder" />
+        app:srcCompat="@drawable/placeholder"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView"
@@ -77,19 +80,20 @@
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:clickable="true"
         android:text=" Register here"
         android:textColor="@color/clickable_text"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        tools:ignore="HardcodedText,KeyboardInaccessibleWidget" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
