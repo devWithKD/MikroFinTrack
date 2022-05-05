@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MikroFinTrack">
         <activity
-            android:name=".MainActivity"
+            android:name=".SignIn_email"
+            android:exported="false" />
+        <activity
+            android:name=".FirstPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
