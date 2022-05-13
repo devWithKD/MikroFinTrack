@@ -16,43 +16,52 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo"
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/unameSignIn"
         android:layout_width="265dp"
         android:layout_height="48dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/uname"
+        android:background="@drawable/rounded_rect_secondary_grey"
+        android:paddingStart="15dp"
+        android:drawableStart="@drawable/user"
+        android:drawablePadding="8dp"
         android:ems="10"
         android:fontFamily="@font/candara"
         android:hint="user@something.com"
         android:inputType="textPersonName"
-        android:paddingStart="50dp"
         android:textColor="@color/black"
         android:textColorHint="@color/text_secondary"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        tools:ignore="HardcodedText,RtlSymmetry"
+        android:autofillHints="emailAddress" />
 
     <EditText
         android:id="@+id/passSignIn"
         android:layout_width="265dp"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/pass"
+        android:background="@drawable/rounded_rect_secondary_grey"
         android:ems="10"
+        android:drawableStart="@drawable/padlock"
+        android:drawablePadding="8dp"
         android:fontFamily="@font/candara"
         android:hint="password"
         android:inputType="textPassword"
-        android:paddingStart="50dp"
+        android:paddingStart="15dp"
         android:textColor="@color/black"
         android:textColorHint="@color/text_secondary"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unameSignIn" />
+        app:layout_constraintTop_toBottomOf="@+id/unameSignIn"
+        tools:ignore="HardcodedText,RtlSymmetry"
+        android:autofillHints="password" />
 
     <Button
         android:id="@+id/signIn"
@@ -63,9 +72,10 @@
         android:fontFamily="@font/candara_bold"
         android:text="Sign In"
         android:textAllCaps="false"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/passSignIn"
-        app:layout_constraintTop_toBottomOf="@+id/passSignIn" />
+        app:layout_constraintTop_toBottomOf="@+id/passSignIn"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView3"
@@ -77,7 +87,8 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/signIn"
         app:layout_constraintEnd_toEndOf="@+id/passSignIn"
-        app:layout_constraintTop_toTopOf="@+id/signIn" />
+        app:layout_constraintTop_toTopOf="@+id/signIn"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/backBtnSignIn"

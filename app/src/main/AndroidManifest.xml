@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.MikroFin.mikrofintrack">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,10 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MikroFinTrack">
         <activity
-            android:name=".SignIn_email"
-            android:exported="false" />
-        <activity
-            android:name=".FirstPage"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
+<!--            android:theme="@style/Theme.MikroFinTrack.ActionBar"-->
+        <activity
+            android:name=".RegPage"
+            android:exported="false" />
+        <activity
+            android:name=".FirstPage"
+            android:exported="false"/>
+        <activity
+            android:name=".SignIn_email"
+            android:exported="false" />
     </application>
 
 </manifest>

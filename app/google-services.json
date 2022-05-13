@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "359649844621-9281480b4ikkc3dvuqd1rj219vcl89bm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.MikroFin.mikrofintrack",
+            "certificate_hash": "55dcd6d57b901b7566caf540b084ff7a536b1ec5"
+          }
+        },
+        {
           "client_id": "359649844621-4pe8uqeps6k61b6kbkq9e6p8oknlhva3.apps.googleusercontent.com",
           "client_type": 3
         }

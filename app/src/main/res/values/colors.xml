@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="clickable_text">#0053F9</color>
     <color name="text_secondary">#929292</color>
+    <color name="Secondary">#DBDBDB</color>
+    <color name="bg_primary">@color/white</color>
 </resources>
