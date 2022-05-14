@@ -17,18 +17,27 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegPage extends AppCompatActivity {
 
     private static final String TAG = "RegPageActivity";
     private static final int RC_SIGN_IN = 1001;
 
+    private FirebaseFirestore fStore;
     private FirebaseAuth mAuth;
     private GoogleSignInClient gsc;
 
@@ -41,6 +50,7 @@ public class RegPage extends AppCompatActivity {
         regSignUp();
         regGoogleSignIn();
         configureGoogleSignIn();
+        fStore = FirebaseFirestore.getInstance();
     }
 
     private void configureGoogleSignIn() {
@@ -99,8 +109,23 @@ public class RegPage extends AppCompatActivity {
     }
 
     private void launchDashboard(FirebaseUser user) {
+        String uid = null,name = null,email = null;
         if (user != null) {
-            DashboardActivity.startActivity(this, user);
+            for (UserInfo profile : user.getProviderData()) {
+                // Id of the provider (ex: google.com)
+                // providerId = profile.getProviderId();
+
+                // UID specific to the provider
+                uid = profile.getUid();
+
+                // Name, email address, and profile photo Url
+                name = profile.getDisplayName();
+                email = profile.getEmail();
+                // Uri photoUrl = profile.getPhotoUrl();
+
+            }
+            dbhandler(uid, name, email);
+            DashboardActivity.startActivity(this, user, uid);
             finish();
         }
     }
@@ -138,4 +163,30 @@ public class RegPage extends AppCompatActivity {
             }
         });
     }
+
+    private void dbhandler(String uid, String name, String email) {
+        DocumentReference documentReference = fStore.collection("Users").document(uid);
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (!document.exists()) {
+                        Map<String,Object> user = new HashMap<>();
+                        user.put("FName",name);
+                        user.put("email",email);
+                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                showToastMessage("New database has been created!");
+                            }
+                        });
+                    }
+                } else {
+                    Log.d(TAG, "Failed with: ", task.getException());
+                }
+            }
+        });
+    }
+
 }

@@ -15,6 +15,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,12 +31,14 @@ import javax.annotation.meta.When;
 
 public class DashboardActivity extends AppCompatActivity {
     private static FirebaseUser firebaseUser;
+    GoogleSignInClient gsc;
+    FirebaseAuth mAuth;
     DrawerLayout dashboardDrawerLayout;
     NavigationView navigationView;
     //ActionBarDrawerToggle toggle;
 
 
-    public static void startActivity(Context context, FirebaseUser user) {
+    public static void startActivity(Context context, FirebaseUser user, String uid) {
         Intent intent = new Intent(context, DashboardActivity.class);
         firebaseUser = user;
         context.startActivity(intent);
@@ -43,8 +50,13 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         dashboardDrawerLayout = (DrawerLayout) findViewById(R.id.dashboardDrawerLayout);
         navigationView = (NavigationView) findViewById(R.id.navView);
-
-
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .requestProfile()
+                .build();
+        mAuth = FirebaseAuth.getInstance();
+        gsc= GoogleSignIn.getClient(DashboardActivity.this, gso);
         ImageView imageView = (ImageView) findViewById(R.id.DBUserButton);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,9 +103,16 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void dblogout() {
         //firebaseUser.delete();
-        
-        Toast.makeText(DashboardActivity.this, "Logging Out", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(DashboardActivity.this,FirstPage.class));
+        gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                mAuth.signOut();
+                Toast.makeText(DashboardActivity.this, "Logging Out", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(DashboardActivity.this,FirstPage.class));
+            }
+        });
+
+
     }
 
     private void slideLeft() {
