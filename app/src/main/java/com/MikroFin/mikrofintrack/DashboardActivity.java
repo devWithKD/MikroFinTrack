@@ -1,10 +1,7 @@
 package com.MikroFin.mikrofintrack;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.SupportActionModeWrapper;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
@@ -13,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -24,9 +22,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Objects;
-
-import javax.annotation.meta.When;
+import java.util.Calendar;
 
 
 public class DashboardActivity extends AppCompatActivity {
@@ -35,6 +31,14 @@ public class DashboardActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     DrawerLayout dashboardDrawerLayout;
     NavigationView navigationView;
+    Calendar calendar;
+    TextView monthBtn;
+    ImageView usermenuBtn;
+
+    String[]monthName={"January","February","March", "April", "May", "June", "July",
+            "August", "September", "October", "November",
+            "December"};
+
     //ActionBarDrawerToggle toggle;
 
 
@@ -50,6 +54,17 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         dashboardDrawerLayout = (DrawerLayout) findViewById(R.id.dashboardDrawerLayout);
         navigationView = (NavigationView) findViewById(R.id.navView);
+        monthBtn = (TextView) findViewById(R.id.monthbtn);
+        usermenuBtn = (ImageView) findViewById(R.id.DBUserButton);
+
+        calendar = Calendar.getInstance();
+        String month=monthName[calendar.get(Calendar.MONTH)];
+        int year = calendar.get(Calendar.YEAR);
+
+        String currMonth = month +" "+ String.valueOf(year);
+
+        monthBtn.setText(currMonth);
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -57,11 +72,12 @@ public class DashboardActivity extends AppCompatActivity {
                 .build();
         mAuth = FirebaseAuth.getInstance();
         gsc= GoogleSignIn.getClient(DashboardActivity.this, gso);
-        ImageView imageView = (ImageView) findViewById(R.id.DBUserButton);
-        imageView.setOnClickListener(new View.OnClickListener() {
+
+
+        usermenuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                slideLeft();
+                slideRight();
             }
         });
 
@@ -83,6 +99,10 @@ public class DashboardActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
+
+
 //        toggle = new ActionBarDrawerToggle(this,dashboardDrawerLayout,R.string.open,R.string.close);
 //        dashboardDrawerLayout.addDrawerListener(toggle);
 //        toggle.syncState();
@@ -115,7 +135,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     }
 
-    private void slideLeft() {
+    private void slideRight() {
         dashboardDrawerLayout.openDrawer(navigationView);
     }
 
