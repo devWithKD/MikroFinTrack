@@ -28,4 +28,11 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/candara</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     </resources>
